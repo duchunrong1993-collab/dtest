@@ -1,6 +1,6 @@
 from django.shortcuts import render , HttpResponse
 def index(request):
-    return HttpResponse("hello world")
+    return render(request, 'main.html')
 
 def cmdb(request):
     return HttpResponse("this is cmdb")
