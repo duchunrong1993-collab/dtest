@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index,name='index'),
     path('add/', views.add,name='add'),
     path('edit/<int:pk>/', views.edit, name='edit'),
+    path('delete/<int:host_id>/', views.delete_host, name='delete_host'),
 ]

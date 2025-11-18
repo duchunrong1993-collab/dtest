@@ -2,7 +2,7 @@ from django.shortcuts import render , HttpResponse,redirect, get_object_or_404
 from .models import host
 from .forms import hostForm
 def index(request):
-    host_list = host.objects.all()
+    host_list = host.objects.order_by('id')
     return render(request, 'main.html',{'host_list':host_list})
 
 def add(request):
@@ -25,3 +25,9 @@ def edit(request, pk):
     else:
         form = hostForm(instance=obj)
     return render(request, 'add.html', {'form': form, 'title': '资产编辑'})
+
+def delete_host(request, host_id):
+    if request.method == 'POST':
+        obj = get_object_or_404(host, id=host_id)
+        obj.delete()
+    return redirect('index')
