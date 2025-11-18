@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
  {% block content %}
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -31,6 +31,7 @@
           </div>
         </div>
         <div class="box-body">
+          <a href="{% url 'add' %}" class="btn btn-success" style="margin-bottom:10px;">新增资产</a>
           <table class="table table-hover">
             <tr>
               <th>ID</th>
@@ -40,6 +41,7 @@
               <th>内存</th>
               <th>磁盘</th>
               <th>描述</th>
+              <th>操作</th>
             </tr>
             {% for host in host_list %}
             <tr>
@@ -50,6 +52,9 @@
               <td>{{ host.mem }}</td>
               <td>{{ host.disk }}</td>             
               <td>{{ host.desc }}</td>
+              <td>
+                <a href="{% url 'edit' host.id %}" class="btn btn-primary btn-xs">编辑</a>
+              </td>
             </tr>
             {% endfor %}
           </table>
