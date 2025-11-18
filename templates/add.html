@@ -4,8 +4,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       CMDB资产管理系统
-       <small>this is all hosts!</small>
+      资产录入
+      
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,7 +20,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">主机列表</h3>
+          <h3 class="box-title">Title</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -31,32 +31,17 @@
           </div>
         </div>
         <div class="box-body">
-          <table class="table table-hover">
-            <tr>
-              <th>ID</th>
-              <th>主机名</th>
-              <th>IP地址</th>
-              <th>CPU</th>
-              <th>内存</th>
-              <th>磁盘</th>
-              <th>描述</th>
-            </tr>
-            {% for host in host_list %}
-            <tr>
-              <td>{{ host.id }}</td>
-              <td>{{ host.hostname }}</td>
-              <td>{{ host.ip }}</td>
-              <td>{{ host.cpu }}</td>
-              <td>{{ host.mem }}</td>
-              <td>{{ host.disk }}</td>             
-              <td>{{ host.desc }}</td>
-            </tr>
-            {% endfor %}
-          </table>
+          这里是资产录入的页面！
+          <form method="post" action="{% url 'add' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">提交</button>
+            <a href="{% url 'index' %}" class="btn btn-default">返回</a>
+          </form>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          Footer
+        
         </div>
         <!-- /.box-footer-->
       </div>

@@ -1,9 +1,16 @@
-from django.shortcuts import render , HttpResponse
+from django.shortcuts import render , HttpResponse,redirect
+from .models import host
+from .forms import hostForm
 def index(request):
-    return render(request, 'main.html')
+    host_list = host.objects.all()
+    return render(request, 'main.html',{'host_list':host_list})
 
-def cmdb(request):
-    return HttpResponse("this is cmdb")
-    
-def asset(request,asset_id): 
-    return HttpResponse(f"this is asset {asset_id}") 
+def add(request):
+    if request.method == 'POST':
+        form = hostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = hostForm()
+    return render(request, 'add.html',{'form':form})
